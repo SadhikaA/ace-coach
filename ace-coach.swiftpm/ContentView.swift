@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection: String? = nil // make this a part of the player struct 
 
     var body: some View {
         NavigationView {
@@ -12,25 +13,18 @@ struct ContentView: View {
                     .scaledToFit()
                 Text("ace").font(.system(size: 60)).fontWeight(.bold).multilineTextAlignment(.center)
                 Text("your personal tennis coach").fontWeight(.medium).multilineTextAlignment(.center).padding(.bottom)
-                Button("let's ") {
-                    Text("let's play")
-                        .font(.body)
-                        .fontWeight(.medium)
-                        .padding([.top, .bottom], 8.0)
-                        .padding([.leading, .trailing], 25.0)
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(40)
-                }
+                NavigationLink(destination: RacquetView(), tag: "Racquet", selection: $selection) { EmptyView() }
+                NavigationLink(destination: CourtView(), tag: "Court", selection: $selection) { EmptyView() }
+                Button("let's play") {
+                    self.selection = "Racquet"
+                }.padding([.top, .bottom], 8.0)
+                    .padding([.leading, .trailing], 25.0)
+                    .background(Color.green)
+                    .foregroundColor(.white)
+                    .cornerRadius(40)
             }
             .padding(.bottom)
             .preferredColorScheme(.light)
-            
-            VStack(spacing:30) {
-                NavigationLink(destination: RacquetView()) {
-                    Text("Show Racquet View")
-                }
-            }.navigationTitle("Menu")
         }
     }
 }
@@ -42,3 +36,12 @@ struct RacquetView : View {
         }
     }
 }
+
+struct CourtView : View {
+    var body: some View {
+        VStack {
+            Text("Court Selection")
+        }
+    }
+}
+
