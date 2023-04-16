@@ -8,13 +8,13 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "ace-coach",
+    name: "Ace Coach",
     platforms: [
         .iOS("15.2")
     ],
     products: [
         .iOSApplication(
-            name: "ace-coach",
+            name: "Ace Coach",
             targets: ["AppModule"],
             bundleIdentifier: "com.sadhikaakula.ace-coach",
             teamIdentifier: "VZ55F6HT3L",
