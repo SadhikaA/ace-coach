@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selection: String? = nil // make this a part of the player struct 
+    @State private var selection: String? = nil // make this a part of the player struct
 
     var body: some View {
         NavigationView {
@@ -19,7 +19,7 @@ struct ContentView: View {
                     self.selection = "Racquet"
                 }.padding([.top, .bottom], 8.0)
                     .padding([.leading, .trailing], 25.0)
-                    .background(Color.green)
+                    .background(Color("Green"))
                     .foregroundColor(.white)
                     .cornerRadius(40)
             }
