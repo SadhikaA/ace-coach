@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var next: String? = nil
 
     var body: some View {
@@ -25,6 +26,19 @@ struct ContentView: View {
             }
             .padding(.bottom)
             .preferredColorScheme(.light)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(
+                leading:
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Image(systemName: "arrow.left")
+                            .foregroundColor(.blue)
+                            .imageScale(.large)
+                            .frame(width: 44, height: 44)
+                            .padding()
+                    })
+            )
         }
     }
 }

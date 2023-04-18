@@ -16,7 +16,7 @@ struct RacquetView : View {
                 Text("select the racquet that matches your size").fontWeight(.medium).multilineTextAlignment(.center).padding(.bottom)
                 NavigationLink(destination: CourtView(), tag: "Court", selection: $next) { EmptyView() }
                 Button("continue") {
-                    self.next = "Court"  // goes to first screen
+                    self.next = "Court"
                 }.padding([.top, .bottom], 8.0)
                     .padding([.leading, .trailing], 20.0)
                     .background(Color("Green"))
@@ -31,7 +31,7 @@ struct RacquetView : View {
                 }, label: {
                     Image(systemName: "arrow.left")
                         .foregroundColor(.green)
-                        .frame(width: 4, height: 44)
+                        .frame(width: 4, height: 2)
                         .padding()
                     Text("Back").foregroundColor(.green)
                 })
