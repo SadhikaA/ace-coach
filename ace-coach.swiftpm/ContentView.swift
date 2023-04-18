@@ -29,14 +29,6 @@ struct ContentView: View {
     }
 }
 
-struct RacquetView : View {
-    var body: some View {
-        VStack {
-            Text("Racquet Selection")
-        }
-    }
-}
-
 struct CourtView : View {
     var body: some View {
         VStack {
