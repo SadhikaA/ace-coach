@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selection: String? = nil // make this a part of the player struct
+    @State private var next: String? = nil
 
     var body: some View {
         NavigationView {
@@ -13,26 +13,18 @@ struct ContentView: View {
                     .scaledToFit()
                 Text("ace").font(.system(size: 60)).fontWeight(.bold).multilineTextAlignment(.center)
                 Text("your personal tennis coach").fontWeight(.medium).multilineTextAlignment(.center).padding(.bottom)
-                NavigationLink(destination: RacquetView(), tag: "Racquet", selection: $selection) { EmptyView() }
-                NavigationLink(destination: CourtView(), tag: "Court", selection: $selection) { EmptyView() }
+                NavigationLink(destination: RacquetView(), tag: "Racquet", selection: $next) { EmptyView() }
+                NavigationLink(destination: CourtView(), tag: "Court", selection: $next) { EmptyView() }
                 Button("let's play") {
-                    self.selection = "Racquet"
+                    self.next = "Racquet"  // goes to first screen
                 }.padding([.top, .bottom], 8.0)
-                    .padding([.leading, .trailing], 25.0)
+                    .padding([.leading, .trailing], 20.0)
                     .background(Color("Green"))
                     .foregroundColor(.white)
-                    .cornerRadius(40)
+                    .cornerRadius(10)
             }
             .padding(.bottom)
             .preferredColorScheme(.light)
-        }
-    }
-}
-
-struct CourtView : View {
-    var body: some View {
-        VStack {
-            Text("Court Selection")
         }
     }
 }
