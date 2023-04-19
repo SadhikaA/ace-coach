@@ -4,10 +4,9 @@
 
 import SwiftUI
 
-
 struct StepView: View {
     enum Selection {
-        case racquet, court, forehand, backhand, serve
+        case racquet, court, forehand, backhand, serve, complete
     }
     
     @State private var unlocked: [Selection] = []
@@ -19,41 +18,52 @@ struct StepView: View {
                 List {
                     NavigationLink(destination: RacquetView(unlocked: $unlocked, selected:$selected), tag: .racquet, selection: $selected) {
                         HStack {
-                            Image(systemName: "lock" + (unlocked.contains(.racquet) ? ".open" : "")).foregroundColor(Color("Green"))
+                            Image(systemName: "lock" + (unlocked.contains(.racquet) ? ".open" : ""))
                             Text("Racquet")
                         }
-                    }
+                    }.listRowBackground(selected == .racquet ? Color("Green") : Color(.white))
+                    
                     NavigationLink(destination: CourtView(unlocked: $unlocked, selected:$selected), tag: .court, selection: $selected) {
                         HStack {
-                            Image(systemName: "lock" + (unlocked.contains(.racquet) && unlocked.contains(.court) ? ".open" : "")).foregroundColor(Color("Green"))
+                            Image(systemName: "lock" + (unlocked.contains(.racquet) && unlocked.contains(.court) ? ".open" : ""))
                             Text("Court")
                         }.disabled(!unlocked.contains(.racquet))
-                    }
+                    }.listRowBackground(selected == .court ? Color("Green") : Color(.white))
+                    
+                    NavigationLink(destination: ForehandView(unlocked: $unlocked, selected: $selected), tag: .forehand, selection: $selected) {
+                        HStack {
+                            Image(systemName: "lock" + (unlocked.contains(.racquet) && unlocked.contains(.court) && unlocked.contains(.forehand) ? ".open" : ""))
+                            Text("Forehand")
+                        }
+                        .disabled(!unlocked.contains(.court))
+                    }.listRowBackground(selected == .forehand ?  Color("Green") : Color(.white))
+                    
+                    NavigationLink(destination: BackhandView(unlocked: $unlocked, selected: $selected), tag: .backhand, selection: $selected) {
+                        HStack {
+                            Image(systemName: "lock" + (unlocked.contains(.racquet) && unlocked.contains(.court) && unlocked.contains(.forehand) && unlocked.contains(.backhand) ? ".open" : ""))
+                            Text("Backhand")
+                        }
+                        .disabled(!unlocked.contains(.forehand))
+                    }.listRowBackground(selected == .backhand ? Color("Green"): Color(.white))
+                    
+                    NavigationLink(destination: ServeView(unlocked: $unlocked, selected: $selected), tag: .serve, selection: $selected) {
+                        HStack {
+                            Image(systemName: "lock" + (unlocked.contains(.racquet) && unlocked.contains(.court) && unlocked.contains(.forehand) && unlocked.contains(.backhand) && unlocked.contains(.serve) ? ".open" : ""))
+                            Text("Serve")
+                        }
+                        .disabled(!unlocked.contains(.backhand))
+                    }.listRowBackground(selected == .serve ?  Color("Green") : Color(.white))
+                    
+                    NavigationLink(destination: CompletedView(unlocked: $unlocked, selected: $selected), tag: .complete, selection: $selected) {
+                        HStack {
+                            Image(systemName: "lock" + (unlocked.contains(.racquet) && unlocked.contains(.court) && unlocked.contains(.forehand) && unlocked.contains(.backhand) && unlocked.contains(.serve) && unlocked.contains(.complete)  ? ".open" : ""))
+                            Text("Finish")
+                        }
+                        .disabled(!unlocked.contains(.serve))
+                    }.listRowBackground(selected == .complete ? Color("Green") : Color(.white))
                 }
             }
-        }
-        
-    }
-}
-
-struct RacquetView: View {
-    @Binding var unlocked: [StepView.Selection]
-    @Binding var selected: StepView.Selection?
-
-    var body: some View {
-        Text("Racquet content goes here.")
-        Text("Accent Color")
-            .foregroundStyle(Color.accentColor)
-        Button(action: {
-            unlocked.append(.racquet)
-            selected = .court
-        }) {
-            Text("Unlock Court")
-        }.padding([.top, .bottom], 8.0)
-            .padding([.leading, .trailing], 20.0)
-            .background(Color("Green"))
-            .foregroundColor(.white)
-            .cornerRadius(10)
+        }.accentColor(.black)
     }
 }
 
@@ -77,79 +87,68 @@ struct CourtView: View {
 }
 
 struct ForehandView: View {
+    @Binding var unlocked: [StepView.Selection]
+    @Binding var selected: StepView.Selection?
+
     var body: some View {
         Text("Forehand content goes here.")
+        Button(action: {
+            unlocked.append(.forehand)
+            selected = .backhand
+        }) {
+            Text("Unlock Backhand")
+        }.padding([.top, .bottom], 8.0)
+            .padding([.leading, .trailing], 20.0)
+            .background(Color("Green"))
+            .foregroundColor(.white)
+            .cornerRadius(10)
     }
 }
 
 struct BackhandView: View {
+    @Binding var unlocked: [StepView.Selection]
+    @Binding var selected: StepView.Selection?
+
     var body: some View {
         Text("Backhand content goes here.")
+        Button(action: {
+            unlocked.append(.backhand)
+            selected = .serve
+        }) {
+            Text("Unlock Serve")
+        }.padding([.top, .bottom], 8.0)
+            .padding([.leading, .trailing], 20.0)
+            .background(Color("Green"))
+            .foregroundColor(.white)
+            .cornerRadius(10)
     }
 }
 
+struct ServeView: View {
+    @Binding var unlocked: [StepView.Selection]
+    @Binding var selected: StepView.Selection?
 
-//
-//struct StepView: View {
-//    @State private var next: String?
-//    @State private var current: String?
-//    @State private var isRUnlocked = false
-//
-//    var body: some View {
-//        NavigationView {
-//            NavigationLink(destination: RacquetView(isRUnlocked: $isRUnlocked)) {
-//                Label(
-//                    title: {
-//                        Text("Racquet").foregroundColor(.black)
-//                    },
-//                    icon: {
-//                        Image(systemName: isRUnlocked ? "lock.open.fill" : "lock.fill").foregroundColor(Color("Green"))
-//                    }
-//                )
-//                }.listRowBackground(current == "Racquet" ? Color(.systemFill) : Color(.white))
-//            }
-//            List {
-//                Button(
-//                    action: {
-//                        current = "Racquet"
-//                        isRUnlocked = true
-//                    }) {
-//                    Label(
-//                        title: {
-//                            Text("Racquet").foregroundColor(.black)
-//                        },
-//                        icon: {
-//                            Image(systemName: isRUnlocked ? "lock.open.fill" : "lock.fill").foregroundColor(Color("Green"))
-//                        }
-//                    )
-//                    }.listRowBackground(current == "Racquet" ? Color(.systemFill) : Color(.white))
-//                if (current == "Racquet" && isRUnlocked) {
-//                    RacquetView(isRUnlocked: $isRUnlocked)
-//                }
-//                Button("Court") {
-//                    current = "Court"
-//                }.foregroundColor(Color("Green"))
-//                Button("Forehand") {
-//                    next = "Racquet"
-//                }.foregroundColor(Color("Green"))
-//                Button("Backhand") {
-//                    next = "Racquet"
-//                }.foregroundColor(Color("Green"))
-//                Button("Serve") {
-//                    next = "Racquet"
-//                }.foregroundColor(Color("Green"))
-//                Button("Congrats") {
-//                    next = "Racquet"
-//                }.foregroundColor(Color("Green"))
-//            }
-//        }
-//    }
-//
-//struct RacquetView: View {
-//    @Binding var isRUnlocked : Bool
-//    var body : some View {
-//        ZStack {
-//            Text("Racquet View")
-//        }
-//    }
-//}
+    var body: some View {
+        Text("Serve content goes here.")
+        Button(action: {
+            unlocked.append(.serve)
+            selected = .complete
+            unlocked.append(.complete)
+        }) {
+            Text("Complete Course")
+        }.padding([.top, .bottom], 8.0)
+            .padding([.leading, .trailing], 20.0)
+            .background(Color("Green"))
+            .foregroundColor(.white)
+            .cornerRadius(10)
+    }
+}
+
+struct CompletedView: View {
+    @Binding var unlocked: [StepView.Selection]
+    @Binding var selected: StepView.Selection?
+
+    var body: some View {
+        Text("Completed content goes here.")
+    }
+}
