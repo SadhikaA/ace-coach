@@ -8,6 +8,24 @@ struct ContentView: View {
     @State private var isPresented = false
     
     var body: some View {
+        ZStack {
+           if isPresented {
+               StepView()
+           } else {
+               StartView(isPresented: $isPresented)
+           }
+       }
+       .onAppear {
+           isPresented = false
+       }.preferredColorScheme(.light)
+       
+    }
+}
+
+struct StartView : View {
+    @Binding var isPresented: Bool
+
+    var body: some View {
         VStack {
             Image("tennis_ball")
                 .resizable()
@@ -23,10 +41,6 @@ struct ContentView: View {
                 .background(Color("Green"))
                 .foregroundColor(.white)
                 .cornerRadius(10)
-            if (isPresented) {
-                StepView(isPresented: $isPresented)
-            }
         }.preferredColorScheme(.light)
     }
 }
-

@@ -5,14 +5,12 @@
 import SwiftUI
 
 struct StepView: View {
-    @Binding var isPresented: Bool
     
     @State var next: String? = nil
-    @State var page1 = false
     
     var body: some View {
-        ZStack {
-            Text("reached step view")
+        NavigationView {
+            
         }
     }
 }
