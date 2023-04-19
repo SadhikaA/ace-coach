@@ -63,7 +63,7 @@ struct StepView: View {
                     }.listRowBackground(selected == .complete ? Color("Green") : Color(.white))
                 }
             }
-        }.accentColor(Color("G"))
+        }.accentColor(Color("Green"))
     }
 }
 

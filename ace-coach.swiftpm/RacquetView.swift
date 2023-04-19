@@ -14,8 +14,7 @@ struct RacquetView: View {
     @State private var slider4Value = 0.0
     @State private var slider5Value = 0.0
     
-    @State private var speed = 50.0
-    @State private var isEditing = false
+    @State private var racquets = [Image("blue_racquet"), Image("red_racquet"), Image("green_racquet")]
     
     private var calculatedValue: String {
             let sum = Int(slider1Value + slider2Value + slider3Value + slider4Value + slider5Value)
@@ -62,6 +61,7 @@ struct RacquetView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                         .foregroundColor(Color("Blue"))
+
                 }.padding(.horizontal)
             }
             Spacer()
