@@ -1,6 +1,6 @@
 // Designed and created by Sadhika Akula in California, 04/18/2023
 // This app can be viewed either with an iPhone 14 in portrait mode or iPad Pro landscape mode.
-// Enjoy hitting those aces!
+// The ball is in your court...let's hit some aces!
 
 import SwiftUI
 

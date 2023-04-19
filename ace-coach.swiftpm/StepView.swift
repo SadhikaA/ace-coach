@@ -1,6 +1,6 @@
 // Designed and created by Sadhika Akula in California, 04/18/2023
-// This app is best viewed with the iPhone 14 Pro in XCode.
-// Enjoy hitting those aces!
+// This app can be viewed either with an iPhone 14 in portrait mode or iPad Pro landscape mode.
+// The ball is in your court...let's hit some aces!
 
 import SwiftUI
 
@@ -63,7 +63,7 @@ struct StepView: View {
                     }.listRowBackground(selected == .complete ? Color("Green") : Color(.white))
                 }
             }
-        }.accentColor(.black)
+        }.accentColor(Color("Blue"))
     }
 }
 
@@ -150,5 +150,6 @@ struct CompletedView: View {
 
     var body: some View {
         Text("Completed content goes here.")
+        // TODO: content is the finalized player profile in a box, draw tennis bag + trophy
     }
 }
