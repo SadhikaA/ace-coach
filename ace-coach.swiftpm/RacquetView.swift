@@ -61,7 +61,7 @@ struct RacquetView: View {
                     Text("\(calculatedValue)")
                         .font(.title2)
                         .fontWeight(.bold)
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(Color("Blue"))
                 }.padding(.horizontal)
             }
             Spacer()
