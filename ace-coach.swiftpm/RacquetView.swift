@@ -61,6 +61,7 @@ struct RacquetView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                         .foregroundColor(Color("Blue"))
+                    
 
                 }.padding(.horizontal)
             }
