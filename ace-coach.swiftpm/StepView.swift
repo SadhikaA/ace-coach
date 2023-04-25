@@ -67,25 +67,6 @@ struct StepView: View {
     }
 }
 
-struct CourtView: View {
-    @Binding var unlocked: [StepView.Selection]
-    @Binding var selected: StepView.Selection?
-
-    var body: some View {
-        Text("Court content goes here.")
-        Button(action: {
-            unlocked.append(.court)
-            selected = .forehand
-        }) {
-            Text("Unlock Forehand")
-        }.padding([.top, .bottom], 8.0)
-            .padding([.leading, .trailing], 20.0)
-            .background(Color("Green"))
-            .foregroundColor(.white)
-            .cornerRadius(10)
-    }
-}
-
 struct ForehandView: View {
     @Binding var unlocked: [StepView.Selection]
     @Binding var selected: StepView.Selection?
