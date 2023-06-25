@@ -8,14 +8,11 @@ struct RacquetView: View {
     @Binding var unlocked: [StepView.Selection]
     @Binding var selected: StepView.Selection?
     
-    
-    @State private var racquets = [Image("blue_racquet"), Image("red_racquet"), Image("green_racquet")]
-    
     var body: some View {
         VStack (alignment: .leading) {
-            Text("Select a racquet").font(.title).fontWeight(.bold)
+            Text("Setup your grip").font(.title).fontWeight(.bold)
             Spacer().frame(height: 10)
-            Text("Choose a good racquet by considering key elements like weight, head size, and their impact on power, spin, and control. Use the sliders below to optimize based on your game and level.")
+            Text("Choose a good racquet by considering key elements like weight, head size, and string pattern. After finding a racquet, it's important to hold the right grip.")
             Spacer().frame(height: 20)
             Spacer()
             Button(action: {
