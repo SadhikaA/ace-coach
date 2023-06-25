@@ -19,7 +19,7 @@ struct StepView: View {
                     NavigationLink(destination: RacquetView(unlocked: $unlocked, selected:$selected), tag: .racquet, selection: $selected) {
                         HStack {
                             Image(systemName: "lock" + (unlocked.contains(.racquet) ? ".open" : ""))
-                            Text("Racquet")
+                            Text("Racquet and Grip")
                         }
                     }.listRowBackground(selected == .racquet ? Color("Green") : Color(.white))
                     
@@ -29,31 +29,7 @@ struct StepView: View {
                             Text("Court")
                         }.disabled(!unlocked.contains(.racquet))
                     }.listRowBackground(selected == .court ? Color("Green") : Color(.white))
-                    
-                    NavigationLink(destination: ForehandView(unlocked: $unlocked, selected: $selected), tag: .forehand, selection: $selected) {
-                        HStack {
-                            Image(systemName: "lock" + (unlocked.contains(.racquet) && unlocked.contains(.court) && unlocked.contains(.forehand) ? ".open" : ""))
-                            Text("Forehand")
-                        }
-                        .disabled(!unlocked.contains(.court))
-                    }.listRowBackground(selected == .forehand ?  Color("Green") : Color(.white))
-                    
-                    NavigationLink(destination: BackhandView(unlocked: $unlocked, selected: $selected), tag: .backhand, selection: $selected) {
-                        HStack {
-                            Image(systemName: "lock" + (unlocked.contains(.racquet) && unlocked.contains(.court) && unlocked.contains(.forehand) && unlocked.contains(.backhand) ? ".open" : ""))
-                            Text("Backhand")
-                        }
-                        .disabled(!unlocked.contains(.forehand))
-                    }.listRowBackground(selected == .backhand ? Color("Green"): Color(.white))
-                    
-                    NavigationLink(destination: ServeView(unlocked: $unlocked, selected: $selected), tag: .serve, selection: $selected) {
-                        HStack {
-                            Image(systemName: "lock" + (unlocked.contains(.racquet) && unlocked.contains(.court) && unlocked.contains(.forehand) && unlocked.contains(.backhand) && unlocked.contains(.serve) ? ".open" : ""))
-                            Text("Serve")
-                        }
-                        .disabled(!unlocked.contains(.backhand))
-                    }.listRowBackground(selected == .serve ?  Color("Green") : Color(.white))
-                    
+                         
                     NavigationLink(destination: CompletedView(unlocked: $unlocked, selected: $selected), tag: .complete, selection: $selected) {
                         HStack {
                             Image(systemName: "lock" + (unlocked.contains(.racquet) && unlocked.contains(.court) && unlocked.contains(.forehand) && unlocked.contains(.backhand) && unlocked.contains(.serve) && unlocked.contains(.complete)  ? ".open" : ""))

@@ -33,7 +33,7 @@ struct StartView : View {
                 .frame(width: 150, height: 100)
                 .scaledToFit()
             Text("ace").font(.system(size: 60)).fontWeight(.bold).multilineTextAlignment(.center)
-            Text("your personal tennis coach").fontWeight(.medium).multilineTextAlignment(.center).padding(.bottom)
+            Text("your personal\ntennis coach").fontWeight(.medium).multilineTextAlignment(.center).padding(.bottom)
             Button("let's play") {
                 isPresented = true
             }.padding([.top, .bottom], 8.0)
